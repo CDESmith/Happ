@@ -45,37 +45,12 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_test, R.id.nav_lights, R.id.nav_heat,
-                R.id.nav_water, R.id.nav_settings, R.id.nav_mylocation)
+                R.id.nav_water, R.id.nav_settings, R.id.nav_mylocation, R.id.nav_statistics)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-
-        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
-            @Override
-            public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                int menuID = destination.getId();
-                switch(menuID){
-                    case R.id.nav_home:
-                        Toast.makeText(MainActivity.this, "Home Selected", Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.nav_gallery:
-                        Toast.makeText(MainActivity.this, "Gallery Selected", Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.nav_slideshow:
-                        Toast.makeText(MainActivity.this, "Slideshow Selected", Toast.LENGTH_LONG).show();
-                        break;
-                         default:
-                        break;
-
-                }
-
-            }
-
-
-
-        });
+        NavigationUI.setupWithNavController(navigationView, navController);;
 
     }
 

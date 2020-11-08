@@ -58,4 +58,10 @@
         android:name="com.happ.happ.ui.mylocation.MyLocationFragment"
         android:label="@string/menu_mylocation"
         tools:layout="@layout/my_location_fragment" />
+
+    <fragment
+        android:id="@+id/nav_statistics"
+        android:name="com.happ.happ.ui.statistics.StatisticsFragment"
+        android:label="@string/menu_statistics"
+        tools:layout="@layout/statistics_fragment" />
 </navigation>
