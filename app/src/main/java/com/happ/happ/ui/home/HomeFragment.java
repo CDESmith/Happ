@@ -17,12 +17,17 @@ import com.happ.happ.R;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    public String userName = "Happ-y User!";
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        TextView userWelcomeTV = root.findViewById(R.id.userWelcomeTV);
+        userWelcomeTV.setText("Welcome, " + userName);
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -31,5 +36,9 @@ public class HomeFragment extends Fragment {
             }
         });
         return root;
+
+
+
+
     }
 }
