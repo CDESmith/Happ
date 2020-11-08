@@ -40,4 +40,22 @@
         android:name="com.happ.happ.ui.heat.HeatFragment"
         android:label="@string/menu_heat"
         tools:layout="@layout/heat_fragment" />
+
+    <fragment
+        android:id="@+id/nav_water"
+        android:name="com.happ.happ.ui.water.WaterFragment"
+        android:label="@string/menu_water"
+        tools:layout="@layout/water_fragment" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.happ.happ.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/settings_fragment" />
+
+    <fragment
+        android:id="@+id/nav_mylocation"
+        android:name="com.happ.happ.ui.mylocation.MyLocationFragment"
+        android:label="@string/menu_mylocation"
+        tools:layout="@layout/my_location_fragment" />
 </navigation>
