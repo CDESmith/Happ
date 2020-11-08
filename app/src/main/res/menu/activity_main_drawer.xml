@@ -20,5 +20,29 @@
             android:id="@+id/nav_test"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_test" />
+        <item
+            android:id="@+id/nav_lights"
+            android:icon="@drawable/drawer_light_icon"
+            android:title="@string/menu_lights" />
+        <item
+            android:id="@+id/nav_heat"
+            android:icon="@drawable/drawer_heat_icon"
+            android:title="@string/menu_heat" />
+        <item
+            android:id="@+id/nav_water"
+            android:icon="@drawable/drawer_water_icon"
+            android:title="@string/menu_water" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/drawer_settings_icon"
+            android:title="@string/action_settings" />
+        <item
+            android:id="@+id/nav_mylocation"
+            android:icon="@drawable/drawer_location_icon"
+            android:title="@string/menu_mylocation" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/drawer_statistic_icon"
+            android:title="@string/menu_statistics" />
     </group>
 </menu>
