@@ -1,5 +1,6 @@
 package com.happ.happ.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.happ.happ.LightActivity;
+import com.happ.happ.MainActivity;
 import com.happ.happ.R;
 import com.happ.happ.ui.light.LightFragment;
 
@@ -53,9 +56,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Toast.makeText(getContext(), "Lights Selected", Toast.LENGTH_LONG).show();
+
+        //starts light fragment without navigation drawer
+        /* Intent intent = new Intent (getContext(), LightActivity.class);
+        startActivity(intent);*/
+
+        //starts light fragment behind home fragment
         LightFragment lightFragment = LightFragment.newInstance();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.home_fragment, lightFragment);
+        transaction.replace(this.getId(), lightFragment);
         transaction.commit();
 
     }
