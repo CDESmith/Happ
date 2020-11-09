@@ -22,7 +22,12 @@ import androidx.lifecycle.ViewModelProviders;
 import com.happ.happ.LightActivity;
 import com.happ.happ.MainActivity;
 import com.happ.happ.R;
+import com.happ.happ.ui.heat.HeatFragment;
 import com.happ.happ.ui.light.LightFragment;
+import com.happ.happ.ui.mylocation.MyLocationFragment;
+import com.happ.happ.ui.settings.SettingsFragment;
+import com.happ.happ.ui.statistics.StatisticsFragment;
+import com.happ.happ.ui.water.WaterFragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -41,8 +46,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         TextView userWelcomeTV = root.findViewById(R.id.userWelcomeTV);
         Toolbar toolbar = root.findViewById(R.id.toolbar);
         ImageView lightsImageView = root.findViewById(R.id.imageViewLights);
+        ImageView heatImageView = root.findViewById(R.id.imageViewHeat);
+        ImageView waterImageView = root.findViewById(R.id.imageViewWater);
+        ImageView statisticsImageView = root.findViewById(R.id.imageViewStatistics);
+        ImageView myLocationImageView = root.findViewById(R.id.imageViewLocation);
+        ImageView settingsImageView = root.findViewById(R.id.imageViewSettings);
 
         lightsImageView.setOnClickListener(this);
+        heatImageView.setOnClickListener(this);
+        waterImageView.setOnClickListener(this);
+        statisticsImageView.setOnClickListener(this);
+        myLocationImageView.setOnClickListener(this);
+        settingsImageView.setOnClickListener(this);
+
+        //set toolbar text to Home
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home");
+
+
         userWelcomeTV.setText("Welcome, " + userName);
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -60,20 +80,118 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        //display toast for testing purposes
-        Toast.makeText(getContext(), "Lights Selected", Toast.LENGTH_LONG).show();
 
-        //starts light fragment behind home fragment
-        LightFragment lightFragment = LightFragment.newInstance();
 
-        //change fragment to lights
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(this.getId(), lightFragment);
-        transaction.commit();
+            FragmentTransaction transaction;
 
-        //set toolbar text
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Lights");
+        switch (view.getId()) {
 
+            //when light icon is clicked
+            case R.id.imageViewLights:
+                //display toast for testing purposes
+                Toast.makeText(getContext(), "Lights Selected", Toast.LENGTH_LONG).show();
+
+                //starts light fragment behind home fragment
+                LightFragment lightFragment = LightFragment.newInstance();
+
+                //change fragment to lights
+                 transaction = getFragmentManager().beginTransaction();
+                transaction.replace(this.getId(), lightFragment);
+                transaction.commit();
+
+                //set toolbar text
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Lights");
+                break;
+
+                //when heat icon is clicked
+            case R.id.imageViewHeat:
+                //display toast for testing purposes
+                Toast.makeText(getContext(), "Heat Selected", Toast.LENGTH_LONG).show();
+
+                //starts fragment behind home fragment
+                HeatFragment heatFragment = HeatFragment.newInstance();
+
+                //change fragment
+                 transaction = getFragmentManager().beginTransaction();
+                transaction.replace(this.getId(), heatFragment);
+                transaction.commit();
+
+                //set toolbar text
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Heating");
+                 break;
+
+                 //When water icon is clicked
+            case R.id.imageViewWater:
+                //display toast for testing purposes
+                Toast.makeText(getContext(), "Water Selected", Toast.LENGTH_LONG).show();
+
+                //starts fragment behind home fragment
+                WaterFragment waterFragment = WaterFragment.newInstance();
+
+                //change fragment
+                transaction = getFragmentManager().beginTransaction();
+                transaction.replace(this.getId(), waterFragment);
+                transaction.commit();
+
+                //set toolbar text
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Water");
+                break;
+
+                //when settings icon is clicked
+            case R.id.imageViewSettings:
+                //display toast for testing purposes
+                Toast.makeText(getContext(), "Settings Selected", Toast.LENGTH_LONG).show();
+
+                //starts fragment behind home fragment
+                SettingsFragment settingsFragment = SettingsFragment.newInstance();
+
+                //change fragment
+                transaction = getFragmentManager().beginTransaction();
+                transaction.replace(this.getId(), settingsFragment);
+                transaction.commit();
+
+                //set toolbar text
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Settings");
+                break;
+
+            //when location icon is clicked
+            case R.id.imageViewLocation:
+                //display toast for testing purposes
+                Toast.makeText(getContext(), "Location Selected", Toast.LENGTH_LONG).show();
+
+                //starts fragment behind home fragment
+                MyLocationFragment locationFragment = MyLocationFragment.newInstance();
+
+                //change fragment
+                transaction = getFragmentManager().beginTransaction();
+                transaction.replace(this.getId(), locationFragment);
+                transaction.commit();
+
+                //set toolbar text
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Location");
+                break;
+
+            //when location icon is clicked
+            case R.id.imageViewStatistics:
+                //display toast for testing purposes
+                Toast.makeText(getContext(), "Statistics Selected", Toast.LENGTH_LONG).show();
+
+                //starts fragment behind home fragment
+                StatisticsFragment statisticsFragment = StatisticsFragment.newInstance();
+
+                //change fragment
+                transaction = getFragmentManager().beginTransaction();
+                transaction.replace(this.getId(), statisticsFragment);
+                transaction.commit();
+
+                //set toolbar text
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Statistics");
+                break;
+
+            default:
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Home");
+                break;
+        }
 
 
 
