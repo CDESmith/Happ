@@ -3,6 +3,7 @@ package com.happ.happ.ui.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,12 +14,14 @@ import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.navigation.NavigationView;
 import com.happ.happ.LightActivity;
 import com.happ.happ.MainActivity;
 import com.happ.happ.R;
@@ -33,6 +36,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private HomeViewModel homeViewModel;
     public String userName = "Happ-y User!";
+    NavigationView navigationView;
 
 
 
@@ -51,6 +55,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         ImageView statisticsImageView = root.findViewById(R.id.imageViewStatistics);
         ImageView myLocationImageView = root.findViewById(R.id.imageViewLocation);
         ImageView settingsImageView = root.findViewById(R.id.imageViewSettings);
+
 
         lightsImageView.setOnClickListener(this);
         heatImageView.setOnClickListener(this);
@@ -84,6 +89,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             FragmentTransaction transaction;
 
+
+
         switch (view.getId()) {
 
             //when light icon is clicked
@@ -99,9 +106,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 transaction.replace(this.getId(), lightFragment);
                 transaction.commit();
 
+                //set light as selected item
+                ((MainActivity)getActivity()).setLightSelected(null);
+
+
+
                 //set toolbar text
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Lights");
                 break;
+
+
+
+
 
                 //when heat icon is clicked
             case R.id.imageViewHeat:
@@ -115,6 +131,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                  transaction = getFragmentManager().beginTransaction();
                 transaction.replace(this.getId(), heatFragment);
                 transaction.commit();
+
+                //set heat as selected item
+                ((MainActivity)getActivity()).setHeatSelected(null);
 
                 //set toolbar text
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Heating");
@@ -133,6 +152,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 transaction.replace(this.getId(), waterFragment);
                 transaction.commit();
 
+                //set water as selected item
+                ((MainActivity)getActivity()).setWaterSelected(null);
+
                 //set toolbar text
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Water");
                 break;
@@ -149,6 +171,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 transaction = getFragmentManager().beginTransaction();
                 transaction.replace(this.getId(), settingsFragment);
                 transaction.commit();
+
+                //set settings as selected item
+                ((MainActivity)getActivity()).setSettingsSelected(null);
 
                 //set toolbar text
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Settings");
@@ -167,6 +192,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 transaction.replace(this.getId(), locationFragment);
                 transaction.commit();
 
+                //set location as selected item
+                ((MainActivity)getActivity()).setLocationSelected(null);
+
                 //set toolbar text
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Location");
                 break;
@@ -183,6 +211,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 transaction = getFragmentManager().beginTransaction();
                 transaction.replace(this.getId(), statisticsFragment);
                 transaction.commit();
+
+                //set statistics as selected item
+                ((MainActivity)getActivity()).setStatisticsSelected(null);
 
                 //set toolbar text
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Statistics");

@@ -33,6 +33,7 @@ public class LightFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(LightsViewModel.class);
+
         // TODO: Use the ViewModel
     }
 

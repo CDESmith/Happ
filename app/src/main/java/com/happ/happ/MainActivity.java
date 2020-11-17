@@ -25,9 +25,10 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -56,7 +58,46 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
+
+    public void setLightSelected(NavigationView navigationView){
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(R.id.nav_lights);
+
+    }
+
+    public void setHeatSelected(NavigationView navigationView){
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(R.id.nav_heat);
+
+    }
+
+    public void setWaterSelected(NavigationView navigationView){
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(R.id.nav_water);
+
+    }
+
+    public void setSettingsSelected(NavigationView navigationView){
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(R.id.nav_settings);
+
+    }
+
+    public void setLocationSelected(NavigationView navigationView){
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(R.id.nav_mylocation);
+
+    }
+
+    public void setStatisticsSelected(NavigationView navigationView){
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setCheckedItem(R.id.nav_statistics);
+
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
