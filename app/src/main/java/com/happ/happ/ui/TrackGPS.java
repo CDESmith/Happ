@@ -1,3 +1,5 @@
+package com.happ.happ.ui;
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;

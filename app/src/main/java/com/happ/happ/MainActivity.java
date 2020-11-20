@@ -1,5 +1,8 @@
 package com.happ.happ;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -12,6 +15,7 @@ import com.happ.happ.ui.home.HomeFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -23,6 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int REQUEST_CODE_PERMISSION = 1;
+    String mPermission = Manifest.permission.ACCESS_FINE_LOCATION;
 
     private AppBarConfiguration mAppBarConfiguration;
     NavigationView navigationView;
@@ -56,7 +62,16 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);;
 
+        if(Build.VERSION.SDK_INT>= 23){
+            if(checkSelfPermission(mPermission) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{mPermission, }, REQUEST_CODE_PERMISSION);
+                return;
+            }
 
+        }
+        else{
+
+        }
 
 
     }

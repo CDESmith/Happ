@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,8 +16,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.happ.happ.ui.TrackGPS;
 
 public class MapsFragment extends Fragment {
+
+    GoogleMap gMap;
+    TrackGPS myGpsLocation;
+    LatLng myLocation;
+
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -31,9 +38,13 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            //initiate gMap for future uses
+            gMap = googleMap;
+
+            //add marker to location
+            googleMap.addMarker(new MarkerOptions().position(myLocation).title("Marker in my location"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+
         }
     };
 
@@ -42,7 +53,12 @@ public class MapsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        //get location from Track GPS class
+        myGpsLocation = new TrackGPS(getContext());
+        myLocation = new LatLng(myGpsLocation.getLatitude(), myGpsLocation.getLongitude());
+
         return inflater.inflate(R.layout.fragment_maps, container, false);
+
     }
 
     @Override
@@ -52,6 +68,12 @@ public class MapsFragment extends Fragment {
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
+
         }
+
+
+
+
+
     }
 }
